@@ -14,8 +14,7 @@ namespace ConsoleApplication1
 
         private static void PalindromeChecker()
         {
-            Console.Write("Enter a word or character: ");
-            string input = Console.ReadLine() ?? "";
+            var input = GetStringInput("Enter a word or character: ");
             Console.WriteLine($"{input} is {(IsPalindrome(input)? "" : "not ")}a palindrome."); //Ternary Operators
         }
         private static bool IsPalindrome(string input)
@@ -36,10 +35,8 @@ namespace ConsoleApplication1
 
         private static void AnagramChecker()
         {
-            Console.Write("Enter Word 1: ");
-            string input1 = Console.ReadLine();
-            Console.Write("Enter word 2: ");
-            string input2 = Console.ReadLine();
+            var input1 = GetStringInput("Enter Word 1: ");
+            var input2 = GetStringInput("Enter word 2: ");
             AreAnagrams(input1, input2);
             Console.WriteLine($"{input1} and {input2} is {(AreAnagrams(input1, input2)? "" : "not")}an anagram!");
         }
@@ -53,6 +50,18 @@ namespace ConsoleApplication1
             var string1 = new string(arr1);
             var string2 = new string(arr2);
             return string1 == string2;
+        }
+
+        public static string GetStringInput(string prompt)
+        {
+            while (true)
+            {
+                Console.Write(prompt);
+                var input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input)) continue;
+                
+                return input;
+            }
         }
     }
 }
