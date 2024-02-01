@@ -8,7 +8,8 @@ namespace ConsoleApplication1
     {
         public static void Main(string[] args)
         { 
-            StringReverse();
+            CommonPrefix(); 
+           // StringReverse();
            // PalindromeChecker();
            // AnagramChecker();
            Console.ReadKey();
@@ -77,6 +78,38 @@ namespace ConsoleApplication1
         {
             string[] wordArray = s.Split(' ');
             return string.Join(" ", wordArray.Reverse().ToArray());;
+        }
+
+        public static void CommonPrefix()
+        {
+            string[] stringList = GetStringInput("Enter words, please use comma to add another one:  ").Split(',');
+            Console.WriteLine(LongestCommonPrefix(stringList));
+
+        }
+
+        public static string LongestCommonPrefix(string[] strings)
+        {
+            var stringList = strings;
+            if (stringList == null || stringList.Length == 0)
+            {
+                return "Empty";
+            }
+            Array.Sort(stringList);
+            string firstString = stringList.First();
+            var commonPrefix = " ";
+            for (int i = 0; i < firstString.Length; i++)
+            {
+                char c = stringList[0][i];
+                for (int j = 0; j < stringList.Length; j++)
+                {
+                    if (i >= stringList[j].Length || stringList[j][i] != c)
+                    {
+                        return commonPrefix;
+                    }
+                }
+                commonPrefix += c;
+            }
+            return commonPrefix;
         }
     }
 }
