@@ -7,15 +7,17 @@ namespace ConsoleApplication1
     internal static class Program
     {
         public static void Main(string[] args)
-        {
-           AnagramChecker();
+        { 
+            StringReverse();
+           // PalindromeChecker();
+           // AnagramChecker();
            Console.ReadKey();
         }
 
         private static void PalindromeChecker()
         {
             var input = GetStringInput("Enter a word or character: ");
-            Console.WriteLine($"{input} is {(IsPalindrome(input)? "" : "not ")}a palindrome."); //Ternary Operators
+            Console.WriteLine($"{input} is {(IsPalindrome(input) ? "" : "not ")}a palindrome."); //Ternary Operators
         }
         private static bool IsPalindrome(string input)
         {
@@ -38,7 +40,7 @@ namespace ConsoleApplication1
             var input1 = GetStringInput("Enter Word 1: ");
             var input2 = GetStringInput("Enter word 2: ");
             AreAnagrams(input1, input2);
-            Console.WriteLine($"{input1} and {input2} is {(AreAnagrams(input1, input2)? "" : "not")}an anagram!");
+            Console.WriteLine($"{input1} and {input2} is {(AreAnagrams(input1, input2) ? "" : "not")}an anagram!");
         }
 
         private static bool AreAnagrams(string input1, string input2)
@@ -62,6 +64,19 @@ namespace ConsoleApplication1
                 
                 return input;
             }
+        }
+
+        public static void StringReverse()
+        {
+            string s = GetStringInput("Enter string here: ");
+            ReverseWords(s);
+            Console.WriteLine($"Original Sequence: {s} | Reversed Sequence: {ReverseWords(s)}");
+        }
+
+        private static string ReverseWords(string s)
+        {
+            string[] wordArray = s.Split(' ');
+            return string.Join(" ", wordArray.Reverse().ToArray());;
         }
     }
 }
